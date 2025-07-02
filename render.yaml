@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    plan: free
+    autoDeploy: false
+    envVars:
+      - key: GENERIC_TIMEZONE
+        value: Europe/Amsterdam
+      - key: WEBHOOK_URL
+        value: https://n8n.onrender.com
+      - key: N8N_BASIC_AUTH_USER
+        value: admin
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: parola_ta_aleasa
+    dockerfilePath: ./Dockerfile
+    disk:
+      name: data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
+
+  - type: disk
+    name: data
+    sizeGB: 1
+
+  - type: postgres
+    name: n8n-db
+    plan: free
+git add render.yaml
+git commit -m "Added render.yaml for Render deployment"
+git push
+git add .
+git commit -m "Adaugat render.yaml"
+git push origin main
+git add .
+git commit -m "Adăugat Dockerfile și .env"
+git push origin main

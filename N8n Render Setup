@@ -1,0 +1,56 @@
+**1. `.env` (variabile pentru configurare n8n):**
+
+```env
+# Basic Auth
+N8N_BASIC_AUTH_ACTIVE=true
+N8N_BASIC_AUTH_USER=admin
+N8N_BASIC_AUTH_PASSWORD=parola_ta_aleasa
+
+# Executie
+N8N_HOST=0.0.0.0
+N8N_PORT=5678
+
+# Webhook (customizeaza cu domeniul tau)
+WEBHOOK_URL=https://n8n.onrender.com
+
+# Timp si fuse orare
+GENERIC_TIMEZONE=Europe/Amsterdam
+TZ=Europe/Amsterdam
+
+# Baza de date Postgres
+DB_TYPE=postgresdb
+DB_POSTGRESDB_HOST=n8n-db
+DB_POSTGRESDB_PORT=5432
+DB_POSTGRESDB_DATABASE=postgres
+DB_POSTGRESDB_USER=postgres
+DB_POSTGRESDB_PASSWORD=postgres
+```
+
+---
+
+**2. `Dockerfile` (imagine n8n):**
+
+```Dockerfile
+FROM n8nio/n8n
+
+# Set timezone
+ENV TZ=Europe/Amsterdam
+
+# Creaza folder pentru workflow persistent
+RUN mkdir -p /home/node/.n8n
+VOLUME /home/node/.n8n
+```
+
+---
+
+**3. `export_workflows.sh` (opțional, pentru backup):**
+
+```bash
+#!/bin/bash
+
+n8n export:workflow --output=data/workflows/
+```
+
+---
+
+Spune-mi dacă vrei să le creez automat în Codespaces sau dacă vrei să le copiezi manual. Eu te pot ghida cu comenzi exacte ca la `render.yaml`.
