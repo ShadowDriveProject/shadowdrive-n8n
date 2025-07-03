@@ -9,3 +9,6 @@ services:
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
         value: parola_ta_aleasa
+git add render.yaml
+git commit -m "Fix render.yaml – remove disk"
+git push origin main
