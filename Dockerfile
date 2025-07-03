@@ -1,10 +1,13 @@
-FROM n8nio/n8n
+FROM node:18-alpine
 
-ENV NODE_ENV=production
+# Create app directory
+WORKDIR /data
 
-# Copy .n8n config folder if needed
-# COPY .n8n /home/node/.n8n
+# Install n8n globally
+RUN npm install n8n -g
 
+# Expose default port
 EXPOSE 5678
 
-CMD ["n8n", "start"]
+# Start n8n
+CMD ["n8n"]
