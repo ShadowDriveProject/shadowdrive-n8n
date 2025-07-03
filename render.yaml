@@ -9,17 +9,3 @@ services:
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
         value: parola_ta_aleasa
-      - key: WEBHOOK_URL
-        value: https://n8n-shadowdrive.onrender.com
-    disk:
-      name: data
-      mountPath: /home/node/.n8n
-      sizeGB: 1
-
-  - type: disk
-    name: data
-    sizeGB: 1
-
-  - type: postgres
-    name: n8n-db
-    plan: free
